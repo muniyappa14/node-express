@@ -1,10 +1,13 @@
 const express=require("express")
-const mongo =require("./configuration/database")
 const app=express()
-const port=8000
+const port=8080
+const mongo=require("./configuration/mongo");
+const routes=require("../Demo/configuration/routes")
 
-mongo()
+app.use(express.json())
+mongo();
+app.use(routes)
 
 app.listen(port,()=>{
-    console.log("server is running on ",port)
-})
+    console.log("server is running on the port ",port)
+});
